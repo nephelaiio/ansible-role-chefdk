@@ -32,9 +32,8 @@ Role is tested against the following distributions (docker images):
   * Ubuntu Xenial
   * CentOS 7
   * Debian Jessie
-  * Arch Linux
 
-You can test the role directrly from sources using command ` moclecule test `
+You can test the role directrly from sources using command ` molecule test `
 Please review the [documentation](http://docs.ansible.com/ansible/galaxy.html#setup-travis-integrations) in order to add continuous integration for the role using [Travis CI](https://travis-ci.org). Role configuration is provided in the [Travis-CI configuration file](/travis.yml)
 
 License
