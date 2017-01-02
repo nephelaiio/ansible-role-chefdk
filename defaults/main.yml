@@ -1,0 +1,4 @@
+---
+chefdk_packages: chefdk
+chefdk_packages_state: present
+chefdk_channel: stable

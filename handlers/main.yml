@@ -1,0 +1,7 @@
+---
+# handlers file for chefdk
+- name: restart chefdk services
+  service:
+    name=chefdk_service_name
+    state=restarted
+  become: yes

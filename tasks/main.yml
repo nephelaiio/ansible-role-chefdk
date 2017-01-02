@@ -1,0 +1,60 @@
+---
+# Include variable definitions
+- name: "include variable overrides"
+  include_vars: "{{ item }}"
+  with_first_found:
+    - files:
+      - "vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+      - "vars/{{ ansible_distribution }}.yml"
+      - "vars/{{ ansible_os_family }}.yml"
+      - "vars/main.yml"
+      skip: true
+  tags:
+    - chefdk
+
+# Install repository
+- name: install chefdk yum repository
+  yum_repository:
+    name: "chef-{{ chefdk_channel }}"
+    description: "Chef {{ chefdk_channel }}"
+    gpgkey: https://packages.chef.io/chef.asc
+    baseurl: "https://packages.chef.io/repos/yum/{{ chefdk_channel }}/el/{{ ansible_distribution_major_version }}/{{ ansible_machine }}"
+    gpgcheck: yes
+    enabled: yes
+  when: ansible_os_family == 'RedHat'
+  tags:
+    - chefdk
+
+- name: set up apt https transport
+  package:
+    name: apt-transport-https
+    state: present
+  when: ansible_os_family == 'Debian'
+  tags:
+    - chefdk
+
+- name: install chefdk apt key
+  apt_key:
+    url: "https://packages.chef.io/chef.asc"
+    state: present
+  when: ansible_os_family == 'Debian'
+  tags:
+    - chefdk
+
+- name: install chefdk apt repository
+  apt_repository:
+    repo: "deb https://packages.chef.io/repos/apt/{{ chefdk_channel }} {{ ansible_distribution_release }} main"
+    state: present
+    filename: "chef-{{ chefdk_channel }}"
+  when: ansible_os_family == 'Debian'
+  tags:
+    - chefdk
+
+# Install packages
+- name: install chefdk packages
+  package:
+    name: "{{ chefdk_packages }}"
+    state: "{{ chefdk_packages_state }}"
+  become: yes
+  tags:
+    - chefdk
