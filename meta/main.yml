@@ -2,21 +2,17 @@ galaxy_info:
   author: Ted Cook
   description: An Ansible role to install and configure chefdk
   license: MIT
-
-  min_ansible_version: 2.1
-
+  min_ansible_version: 2.3
   platforms:
-  - name: EL
-    versions:
-    - 6
-    - 7
-  - name: Ubuntu
-    versions:
-    - xenial
-  - name: Debian
-    versions:
-    - jessie
-
+    - name: EL
+      versions:
+        - 7
+    - name: Ubuntu
+      versions:
+        - xenial
+    - name: Debian
+      versions:
+        - stretch
   galaxy_tags:
     - chefdk
 

@@ -1,0 +1,2 @@
+---
+chefdk_package_url: "https://packages.chef.io/files/stable/chefdk/{{ chefdk_version }}/{{ ansible_distribution | lower }}/{{ ansible_distribution_version }}/chefdk_{{ chefdk_version }}-1_{{ ansible_machine | regex_replace('x86_64', 'amd64') }}.deb"
