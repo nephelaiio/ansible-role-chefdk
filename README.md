@@ -5,11 +5,11 @@
 
 An [ansible role](https://galaxy.ansible.com/nephelaiio/chefdk) to install and configure [chefdk](https://downloads.chef.io/chefdk)
 
-# Role Variables
+## Role Variables
 
 Please refer to the [defaults file](/defaults/main.yml) for an up to date list of input parameters.
 
-# Example Playbook
+## Example Playbook
 
 - hosts: servers
   roles:
@@ -17,8 +17,7 @@ Please refer to the [defaults file](/defaults/main.yml) for an up to date list o
        chefdk_packages_state: latest
 
 
-Testing
--------
+## Testing
 
 Please make sure your environment has [docker](https://www.docker.com) installed in order to run role validation tests. Additional python dependencies are listed in the [requirements file](/requirements.txt)
 
@@ -30,7 +29,6 @@ Role is tested against the following distributions (docker images):
 
 You can test the role directrly from sources using command ` molecule test `
 
-License
--------
+## License
 
 This project is licensed under the terms of the [MIT License](/LICENSE)
