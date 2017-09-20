@@ -6,11 +6,6 @@
         - "vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
         - "vars/{{ ansible_distribution }}.yml"
         - "vars/{{ ansible_os_family }}.yml"
-  tags:
-    - chefdk
-
-- debug:
-    var: ansible_distribution
 
 - name: install chefdk debian apt packages
   apt:
@@ -18,8 +13,6 @@
     state: "{{ chefdk_package_state }}"
   become: yes
   when: ansible_distribution == 'Debian'
-  tags:
-    - chefdk
 
 - name: install chefdk ubuntu apt packages
   apt:
@@ -27,8 +20,6 @@
     state: "{{ chefdk_package_state }}"
   become: yes
   when: ansible_distribution == 'Ubuntu'
-  tags:
-    - chefdk
 
 - name: install chefdk yum packages
   yum:
@@ -36,5 +27,3 @@
     state: "{{ chefdk_package_state }}"
   become: yes
   when: ansible_os_family == 'RedHat'
-  tags:
-    - chefdk
