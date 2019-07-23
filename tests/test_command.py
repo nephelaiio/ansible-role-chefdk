@@ -5,7 +5,7 @@ testinfra_hosts = \
     AnsibleRunner('.molecule/ansible_inventory').get_hosts('test')
 
 
-def test_command(Command):
-    assert Command('chef-client -v').rc == 0
-    assert Command('berks -v').rc == 0
-    assert Command('knife -v').rc == 0
+def test_command(host):
+    assert host.command('chef-client -v').rc == 0
+    assert host.command('berks -v').rc == 0
+    assert host.command('knife -v').rc == 0
