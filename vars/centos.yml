@@ -1,0 +1,2 @@
+---
+chefdk_package_url: "https://packages.chef.io/files/stable/chefdk/{{ chefdk_version }}/{{ ansible_distribution | lower | regex_replace('centos', 'el') }}/{{ ansible_distribution_major_version }}/chefdk-{{ chefdk_version }}-1.{{ ansible_distribution | lower | regex_replace('centos', 'el') }}{{ ansible_distribution_major_version | regex_replace('8', '7') }}.{{ ansible_machine }}.rpm"
