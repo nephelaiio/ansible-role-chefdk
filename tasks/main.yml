@@ -1,29 +1,23 @@
 ---
 - name: include variable overrides
   include_vars: "{{ item }}"
-  with_first_found:
-    - files:
-        - "vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-        - "vars/{{ ansible_distribution }}.yml"
-        - "vars/{{ ansible_os_family }}.yml"
+  vars:
+    params:
+      - "vars/{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version }}.yml"
+      - "vars/{{ ansible_distribution | lower }}-{{ ansible_distribution_release | lower }}.yml"
+      - "vars/{{ ansible_distribution | lower }}.yml"
+      - "vars/{{ ansible_os_family | lower }}.yml"
+      - "vars/default.yml"
+  loop: "{{ q('first_found', params, skip=True) }}"
 
 - name: install chefdk debian apt packages
   apt:
     deb: "{{ chefdk_package_url }}"
     state: "{{ chefdk_package_state }}"
-  become: yes
-  when: ansible_distribution == 'Debian'
-
-- name: install chefdk ubuntu apt packages
-  apt:
-    deb: "{{ chefdk_package_url }}"
-    state: "{{ chefdk_package_state }}"
-  become: yes
-  when: ansible_distribution == 'Ubuntu'
+  when: ansible_os_family == 'Debian'
 
 - name: install chefdk yum packages
   yum:
     name: "{{ chefdk_package_url }}"
     state: "{{ chefdk_package_state }}"
-  become: yes
   when: ansible_os_family == 'RedHat'

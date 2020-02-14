@@ -2,4 +2,4 @@
 chefdk_package_name: chefdk
 chefdk_package_state: present
 chefdk_channel: stable
-chefdk_version: 3.0.36
+chefdk_version: 4.7.73
