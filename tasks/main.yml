@@ -16,8 +16,15 @@
     state: "{{ chefdk_package_state }}"
   when: ansible_os_family == 'Debian'
 
-- name: install chefdk yum packages
-  yum:
-    name: "{{ chefdk_package_url }}"
-    state: "{{ chefdk_package_state }}"
+- block:
+
+    - name: install chefdk gpg key
+      rpm_key:
+        key: https://packages.chef.io/chef.asc
+
+    - name: install chefdk yum packages
+      yum:
+        name: "{{ chefdk_package_url }}"
+        state: "{{ chefdk_package_state }}"
+
   when: ansible_os_family == 'RedHat'
